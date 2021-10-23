@@ -14,13 +14,7 @@ const signup = async (req: Request, res: Response) => {
     }
     //@ts-ignore
     const user = User.build({ name, password })
-    await user.save()
-
-    //@ts-ignore
-    const user = User.build({ user })
-    await user.save()
-
-
+    await user.save();
 
     //generate jwt
     const userJwt = Jwt.sign({
@@ -37,7 +31,7 @@ const signup = async (req: Request, res: Response) => {
     // user.token = userJwt
 
 
-    return createResponse(res, 200, "User successfully registered", user)
+    return createResponse(res, 201, "User successfully registered", user)
 }
 
 export { signup as signupRouter }

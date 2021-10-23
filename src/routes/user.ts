@@ -19,8 +19,8 @@ import * as c from '../controllers/user/song.contoller'
 
 router.get('/:userid/lists', requireAuth, v.getSingleUserListValidator, validateRequest, c.getSingleUserListRouter);
 router.get('/:userid/lists/:listid', requireAuth, v.getSpecificListOfSingleUserValidator, validateRequest, c.getSpecificListOfSingleUserRouter);
-router.post('/:userid/lists', v.addListToUserRecordValidator, validateRequest, c.addListToUserRecordRouter);
-router.post('/:userid/lists/:listid/songs', validateRequest, c.addSongToListRouter);
+router.post('/:userid/lists',requireAuth, v.addListToUserRecordValidator, validateRequest, c.addListToUserRecordRouter);
+router.post('/:userid/lists/:listid/songs',requireAuth, v.addSongToListValidator, validateRequest, c.addSongToListRouter);
 
 
 
