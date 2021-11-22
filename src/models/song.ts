@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 //  An interface that describes the properties that is required to create a list
 
 interface SongAttrs {
-    user: UserDoc;
+    user: UserDoc["_id"];
     listId: string;
     songs: Array<songsDetails>;
 }
@@ -25,7 +25,7 @@ interface SongModel extends mongoose.Model<SongDoc> {
 
 // /an interface that describes the properties a song document
 export interface SongDoc extends mongoose.Document {
-    user: string;
+    user: UserDoc["_id"];
     listId: string;
     songs: Array<songsDetails>;
     createdAt: Date;

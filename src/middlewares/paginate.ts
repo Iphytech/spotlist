@@ -5,7 +5,6 @@ interface Pagination {
     currentPage: number,
     totalPages: number,
     totalDocumentCount: number,
-    paginationURI: string
 }
 
 declare global {
@@ -22,8 +21,7 @@ export const paginateResponse = (req: Request, res: Response, next: NextFunction
         perPage: 50,
         currentPage: 1,
         totalPages: 1,
-        totalDocumentCount: 1,
-        paginationURI: "localhost:3009/api/v1/{userType}/{routeName}?currentPage={n}&perPage={n}"
+        totalDocumentCount: 1
     }
     
     if (req.query.perPage) {

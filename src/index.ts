@@ -1,6 +1,6 @@
 import {app} from './app'
 import {DBConnection} from './utils/database'
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
 //connect to database
 DBConnection()

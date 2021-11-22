@@ -1,6 +1,6 @@
 import express from 'express'
 const router = express.Router();
-import { validateRequest, currentUser, requireAuth } from '../middlewares/index';
+import { validateRequest, currentUser, requireAuth, paginateResponse } from '../middlewares/index';
 import * as v from '../validators/user/song-validator';
 
 /*
@@ -17,10 +17,10 @@ import * as c from '../controllers/user/song.contoller'
 
 /*---------- Routes--------------------*/
 
-router.get('/:userid/lists', requireAuth, v.getSingleUserListValidator, validateRequest, c.getSingleUserListRouter);
-router.get('/:userid/lists/:listid', requireAuth, v.getSpecificListOfSingleUserValidator, validateRequest, c.getSpecificListOfSingleUserRouter);
-router.post('/:userid/lists',requireAuth, v.addListToUserRecordValidator, validateRequest, c.addListToUserRecordRouter);
-router.post('/:userid/lists/:listid/songs',requireAuth, v.addSongToListValidator, validateRequest, c.addSongToListRouter);
+router.get('/lists', currentUser, requireAuth, validateRequest, paginateResponse, c.getSingleUserListRouter);
+router.get('/lists/:listid', currentUser, requireAuth, v.getSpecificListOfSingleUserValidator, validateRequest, c.getSpecificListOfSingleUserRouter);
+router.post('/lists', currentUser, requireAuth, v.addListToUserRecordValidator, validateRequest, c.addListToUserRecordRouter);
+router.post('/lists/:listid/songs', currentUser, requireAuth, v.addSongToListValidator, validateRequest, c.addSongToListRouter);
 
 
 
